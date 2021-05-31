@@ -4,16 +4,14 @@ const app= express()
 
 // create database with server
 let mongoose=require('mongoose')
-require('dotenv').config()
+require('dotenv').config({path:"./config/.env"})
 
 // install and setting mongoose
-const databaseConnect=()=>{
-    mongoose.connect(process.env.mongoURI,{ useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false},(err)=>{
+    mongoose.connect(process.env.MONGO_URI,{ useUnifiedTopology: true, useNewUrlParser: true,useFindAndModify:false},(err)=>{
         
         err ? console.log(err) : console.log('database connected')
     })
-}
-module.exports=databaseConnect
+
 
 //parse the data
 app.use(express.json())
